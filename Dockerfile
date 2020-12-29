@@ -43,6 +43,7 @@ RUN make
 RUN make install
 
 WORKDIR /libsigmf/build
+RUN sed -i.bak 's/strtoll_l/strtoull_l/g' /libsigmf/external/flatbuffers/include/flatbuffers/util.h
 RUN cmake \
     -Wno-dev \
     -DCMAKE_INSTALL_PREFIX=/opt/srdangel \
