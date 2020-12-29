@@ -33,7 +33,7 @@ RUN make install
 WORKDIR /sdrangel/build
 RUN cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/sdrangel \
-    -DCMAKE_MODULE_PATH=/opt/sdrangel \
+    -DCMAKE_PREFIX_PATH=/opt/sdrangel \
     ..
 RUN make
 RUN make install
