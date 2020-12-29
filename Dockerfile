@@ -78,7 +78,6 @@ RUN cmake \
     -DSERIALDV_DIR=/opt/sdrangel \
     -DMBE_DIR=/opt/sdrangel \
     -DCODEC2_DIR=/opt/codec2 \
-    -DLIBSIGMF_DIR=/opt/sdrangel \
     -DDSDCC_DIR=/opt/sdrangel \
     -DRX_SAMPLE_24BIT=ON \
     -DBUILD_SERVER=OFF \
