@@ -30,22 +30,13 @@ RUN apk add --no-cache --virtual sdrangel-build-dependencies \
     opencv-dev
 RUN git clone --depth 1  https://github.com/f4exb/serialDV.git /serialdv &&\
     git clone --depth 1  https://github.com/f4exb/dsdcc.git /dsdcc &&\
-    git clone --depth 1  https://github.com/f4exb/libsigmf.git /libsigmf &&\
     git clone --depth 1  https://github.com/osmocom/rtl-sdr.git /librtlsdr &&\
     git clone --depth 1 https://github.com/szechyjs/mbelib.git /mbelib &&\
+    git clone --recursive  https://github.com/f4exb/libsigmf.git /libsigmf &&\
     git clone --recursive --branch ${REVISION} https://github.com/f4exb/sdrangel.git /sdrangel
 
 WORKDIR /serialdv/build
 RUN cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/srdangel \
-    ..
-RUN make
-RUN make install
-
-WORKDIR /libsigmf/build
-RUN sed -i.bak 's/strtoll_l/strtoull_l/g' /libsigmf/external/flatbuffers/include/flatbuffers/util.h
-RUN cmake \
-    -Wno-dev \
     -DCMAKE_INSTALL_PREFIX=/opt/srdangel \
     ..
 RUN make
