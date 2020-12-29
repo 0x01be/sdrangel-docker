@@ -37,7 +37,7 @@ RUN git clone --depth 1  https://github.com/f4exb/serialDV.git /serialdv &&\
 
 WORKDIR /serialdv/build
 RUN cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/srdangel \
+    -DCMAKE_INSTALL_PREFIX=/opt/sdrangel \
     ..
 RUN make
 RUN make install
@@ -45,7 +45,7 @@ RUN make install
 WORKDIR /librtlsdr/build
 RUN cmake \
     -Wno-dev \
-    -DCMAKE_INSTALL_PREFIX=/opt/srdangel \
+    -DCMAKE_INSTALL_PREFIX=/opt/sdrangel \
     ..
 RUN make
 RUN make install
@@ -53,18 +53,17 @@ RUN make install
 WORKDIR /mbelib/build
 RUN cmake \
     -Wno-dev \
-    -DCMAKE_INSTALL_PREFIX=/opt/srdangel \
+    -DCMAKE_INSTALL_PREFIX=/opt/sdrangel \
     ..
 RUN make
 RUN make install
 
 WORKDIR /dsdcc/build
+RUN ldd /opt/sdrangel/lib64/libserialdv.so
 RUN cmake \
     -Wno-dev \
     -DCMAKE_INSTALL_PREFIX=/opt/sdrangel \
-    -DUSE_MBELIB=ON \
-    -DLIBMBE_INCLUDE_DIR=/opt/sdrangel/include \
-    -DLIBMBE_LIBRARY=/opt/sdrangel/lib/libmbe.so \
+    -DCMAKE_MODULE_PATH=/opt/sdrangel \
     -DLIBSERIALDV_INCLUDE_DIR=/opt/sdrangel/include/serialdv \
     -DLIBSERIALDV_LIBRARY=/opt/sdrangel/lib64/libserialdv.so \
     ..
