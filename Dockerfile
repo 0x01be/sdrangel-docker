@@ -14,7 +14,7 @@ RUN apk add --no-cache --virtual sdrangel-build-dependencies \
     boost-dev \
     fftw-dev \
     opus-dev &&\
-    apk add --no-cache --virtual sdrangel-build-dependencies \
+    apk add --no-cache --virtual sdrangel-edge-build-dependencies \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
@@ -24,13 +24,16 @@ RUN apk add --no-cache --virtual sdrangel-build-dependencies \
     git clone --recursive --branch ${REVISION} https://github.com/f4exb/sdrangel.git /sdrangel
 
 WORKDIR /serialdv/build
-RUN cmake ..
+RUN cmake \
+    -DCMAKE_INSTALL_PREFIX=/opt/srdangel \
+    ..
 RUN make
 RUN make install
 
 WORKDIR /sdrangel/build
 RUN cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/sdrangel \
+    -DCMAKE_MODULE_PATH=/opt/sdrangel \
     ..
 RUN make
 RUN make install
