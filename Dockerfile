@@ -32,7 +32,7 @@ RUN git clone --depth 1  https://github.com/f4exb/serialDV.git /serialdv &&\
     git clone --depth 1  https://github.com/f4exb/dsdcc.git /dsdcc &&\
     git clone --depth 1  https://github.com/f4exb/libsigmf.git /libsigmf &&\
     git clone --depth 1  https://github.com/osmocom/rtl-sdr.git /librtlsdr &&\
-    git clone --recursive https://github.com/szechyjs/mbelib.git /mbelib &&\
+    git clone --depth 1 https://github.com/szechyjs/mbelib.git /mbelib &&\
     git clone --recursive --branch ${REVISION} https://github.com/f4exb/sdrangel.git /sdrangel
 
 WORKDIR /serialdv/build
