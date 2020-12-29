@@ -2,6 +2,8 @@ FROM 0x01be/sdrangel:build as build
 
 FROM 0x01be/xpra
 
+COPY --from=build /opt/sdrangel/ /opt/sdrangel/
+
 RUN apk add --no-cache --virtual sdrangel-runtime-dependencies \
     qt5-qtbase \
     qt5-qtwebengine \
@@ -12,7 +14,8 @@ RUN apk add --no-cache --virtual sdrangel-runtime-dependencies \
     boost \
     fftw \
     opus \
-    libusb &&\
+    libusb \
+    mesa-dri-swrast &&\
     apk add --no-cache --virtual sdrangel-edge-runtime-dependencies \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
