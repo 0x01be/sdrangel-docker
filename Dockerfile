@@ -4,7 +4,7 @@ FROM 0x01be/base
 
 COPY --from=codec2 /opt/codec2/ /opt/codec2/
 
-ENV LD_LIBRARY_PATH=/lib:/usr/lib/:/opt/sdrangel/lib \
+ENV LD_LIBRARY_PATH=/lib:/usr/lib/:/opt/sdrangel/lib:/opt/sdrangel/lib64 \
     C_INCLUDE_PATH=/usr/include:/opt/sdrangel/include \
     PATH=${PATH}:/opt/sdrangel/bin \
     REVISION=master
@@ -74,7 +74,7 @@ RUN cmake \
     -DLIBMBE_INCLUDE_DIR=/opt/sdrangel/include \
     -DLIBMBE_LIBRARY=/opt/sdrangel/lib/libmbe.so \
     -DLIBSERIALDV_INCLUDE_DIR=/opt/sdrangel/include/serialdv \
-    -DLIBSERIALDV_LIBRARY=/opt/sdrangel/lib/libserialdv.so \
+    -DLIBSERIALDV_LIBRARY=/opt/sdrangel/lib64/libserialdv.so \
     ..
 RUN make
 RUN make install
