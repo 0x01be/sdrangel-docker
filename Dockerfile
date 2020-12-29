@@ -59,7 +59,6 @@ RUN make
 RUN make install
 
 WORKDIR /dsdcc/build
-RUN ldd /opt/sdrangel/lib64/libserialdv.so
 RUN cmake \
     -Wno-dev \
     -DCMAKE_INSTALL_PREFIX=/opt/sdrangel \
